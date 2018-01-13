@@ -15,9 +15,12 @@ links:
     url:          /
     external:     false
   - name:         Android
-    url:          /book
+    url:          /android
     external:     false
   - name:         学点经济学
+    url:          /economics
+    external:     false
+  - name:         标签
     url:          /tags
     external:     false
   - name:         关于
