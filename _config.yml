@@ -14,10 +14,10 @@ links:
   - name:         首页
     url:          /
     external:     false
-  - name:         书籍
+  - name:         Android
     url:          /book
     external:     false
-  - name:         标签
+  - name:         学点经济学
     url:          /tags
     external:     false
   - name:         关于
