@@ -14,7 +14,7 @@ links:
   - name:         首页
     url:          /
     external:     false
-  - name:         android
+  - name:         Android
     url:          /android
     external:     false
   - name:         学点经济学
