@@ -1,10 +1,10 @@
 ---
 layout: blog 
-economics: true 
+android: true 
 istop: true 
 title: "RxPermissions源码引发的血案——onActivityResult封装" 
 background-image: https://o243f9mnq.qnssl.com/2017/06/116099051.jpg 
-date:  2018-01-15 
+date:  2018-03-04
 category:  Android
 tags: 
 -  Android
