@@ -56,7 +56,7 @@ new RxPermissions(MainActivity.this)
 
 那么```requestCode```和```onRequestPermissionnResult```去哪里了呢？核心在于```RxPermission```内部封装了一个```Fragment```，请求和回调权限均放在其中处理。
 
-```RxPermission```源码包含三个类，```RxPermissions.java```、```Permission.java```和```RxPermissionsFragment.java```。其中```RxPermissions.java```负责与外界的调用关系，包括创建实例，多种请求模式维护；```Permission.java```负责保存权限的名称和状态；```RxPermissionsFragment.java```负责发起权限请求和回调。
+RxPermission源码包含三个类，RxPermissions.java、Permission.java和RxPermissionsFragment.java```。其中```RxPermissions.java负责与外界的调用关系，包括创建实例，多种请求模式维护；Permission.java负责保存权限的名称和状态；RxPermissionsFragment.java负责发起权限请求和回调。
 
 ##### 创建实例
 
