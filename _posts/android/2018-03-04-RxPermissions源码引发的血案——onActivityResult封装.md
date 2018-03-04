@@ -56,7 +56,7 @@ new RxPermissions(MainActivity.this)
 
 那么```requestCode```和```onRequestPermissionnResult```去哪里了呢？核心在于```RxPermission```内部封装了一个```Fragment```，请求和回调权限均放在其中处理。
 
-RxPermission源码包含三个类，RxPermissions.java、Permission.java和RxPermissionsFragment.java```。其中```RxPermissions.java负责与外界的调用关系，包括创建实例，多种请求模式维护；Permission.java负责保存权限的名称和状态；RxPermissionsFragment.java负责发起权限请求和回调。
+RxPermission源码包含三个类，RxPermissions.java、Permission.java和RxPermissionsFragment.java。其中RxPermissions.java负责与外界的调用关系，包括创建实例，多种请求模式维护；Permission.java负责保存权限的名称和状态；RxPermissionsFragment.java负责发起权限请求和回调。
 
 ##### 创建实例
 
@@ -293,6 +293,8 @@ void onRequestPermissionsResult(String permissions[], int[] grantResults, boolea
 ```
 
 上述两段代码即为Fragment中发起权限请求和请求回调的方法，第12～14行可看出权限请求回调后依次发送onNext和onComplete事件发送给下游接收者。
+
+
 
 #### onActivityResult封装
 
