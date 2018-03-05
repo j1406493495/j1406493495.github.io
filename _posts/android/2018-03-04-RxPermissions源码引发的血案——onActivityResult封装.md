@@ -32,7 +32,7 @@ tags:
 
 #### RxPermissions源码分析
 
-##### RxPermission简单使用
+###### RxPermission简单使用
 
 ```
 RxJavaInterop.toV2Observable(
@@ -80,7 +80,7 @@ RxJavaInterop.toV2Observable(
 
 RxPermission源码包含三个类，```RxPermissions.java```、```Permission.java```和```RxPermissionsFragment.java```。其中```RxPermissions.java```负责与外界的调用关系，包括创建实例，多种请求模式维护；```Permission.java```负责保存权限的名称和状态；```RxPermissionsFragment.java```负责发起权限请求和回调。
 
-##### 创建实例
+###### 创建实例
 
 ```
 public RxPermissions(@NonNull Activity activity) {
@@ -109,7 +109,7 @@ private RxPermissionsFragment findRxPermissionsFragment(Activity activity) {
 
 可以看出```new RxPermissions(MainActivity.this)```时根据传了的```Activity```会创建一个```Fragment```，在这个Fragment中处理动态权限请求。
 
-##### 三种请求模式
+###### 三种请求模式
 
 ![](https://ws2.sinaimg.cn/large/006tNc79gy1foyfjcy5duj31as0c0406.jpg)
 
@@ -323,13 +323,13 @@ void onRequestPermissionsResult(String permissions[], int[] grantResults, boolea
 
 上述两段代码即为Fragment中发起权限请求和请求回调的方法，第12～14行可看出权限请求回调后依次发送onNext和onComplete事件发送给下游接收者。
 
-### onActivityResult封装
+#### onActivityResult封装
 
 仿照RxPermissions中封装Fragment发起请求的方式，对startActivityForResult和onActivityResult进行封装，即为今天我要介绍的项目[ResultCallBack](https://github.com/j1406493495/ResultBack)，Github地址：https://github.com/j1406493495/ResultBack。
 
 其中master分支为非RxJava版本，rxjava分支为RxJava版本。
 
-##### 非RxJava版本使用
+###### 非RxJava版本使用
 
 添加依赖：
 
@@ -364,7 +364,7 @@ btnSuccess.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
-##### RxJava版本使用
+###### RxJava版本使用
 
 添加依赖：
 
@@ -406,7 +406,7 @@ RxView.clicks(btnSuccess)
         });
 ```
 
-##### Fragment请求源码分析
+###### Fragment请求源码分析
 
 ```
 private Map<Integer, PublishSubject<ResultInfo>> mSubjects = new HashMap<>();
@@ -437,3 +437,9 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 首先创建一个Map维护请求列表，每次startActivityForResult和onActivityResult时分别存入和移除subject。
 
 第20～21行发送onNext和onComplete到请求下游。
+
+#### 总结
+
+至此，RxPermissions源码分析和onActivityResult封装就结束了。
+
+阅读Github优质开源项目的源码，从中提取精华代码，并运用的实际项目中，是一种开发进阶的好方法，上述源码分析中有任何错误的地方，还请大家多多反馈，共同学习进步。
