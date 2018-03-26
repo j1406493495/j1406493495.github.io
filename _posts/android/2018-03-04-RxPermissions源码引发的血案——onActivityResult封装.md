@@ -113,143 +113,9 @@ private RxPermissionsFragment findRxPermissionsFragment(Activity activity) {
 
 ![](https://ws2.sinaimg.cn/large/006tNc79gy1foyfjcy5duj31as0c0406.jpg)
 
-```
-@SuppressWarnings({"WeakerAccess", "unused"})
-public Observable<Permission> requestEach(final String... permissions) {
-    return Observable.just(TRIGGER).compose(ensureEach(permissions));
-}
-```
+###### 发起/回调权限请求
 
-可知，requestXXX()实际调用ensureXXX()，所以我们直接分析ensureXXX()方法：
-
--   ensureEach(requestEach)
-
-    ```
-    @SuppressWarnings("WeakerAccess")
-    public <T> ObservableTransformer<T, Permission> ensureEach(final String... permissions) {
-        return new ObservableTransformer<T, Permission>() {
-            @Override
-            public ObservableSource<Permission> apply(Observable<T> o) {
-                return request(o, permissions);
-            }
-        };
-    }
-    ```
-
-    ensureEach模式依次回调每个权限的请求结果。
-
--   ensure(request)
-
-    ```
-    @SuppressWarnings("WeakerAccess")
-    public <T> ObservableTransformer<T, Boolean> ensure(final String... permissions) {
-        return new ObservableTransformer<T, Boolean>() {
-            @Override
-            public ObservableSource<Boolean> apply(Observable<T> o) {
-                return request(o, permissions)
-                        // Transform Observable<Permission> to Observable<Boolean>
-                        .buffer(permissions.length)
-                        .flatMap(new Function<List<Permission>, ObservableSource<Boolean>>() {
-                            @Override
-                            public ObservableSource<Boolean> apply(List<Permission> permissions) throws Exception {
-                                if (permissions.isEmpty()) {
-                                    // Occurs during orientation change, when the subject receives onComplete.
-                                    // In that case we don't want to propagate that empty list to the
-                                    // subscriber, only the onComplete.
-                                    return Observable.empty();
-                                }
-                                // Return true if all permissions are granted.
-                                for (Permission p : permissions) {
-                                    if (!p.granted) {
-                                        return Observable.just(false);
-                                    }
-                                }
-                                return Observable.just(true);
-                            }
-                        });
-            }
-        };
-    }
-    ```
-
-    第6行request(o, permissions)方法，该方法内部调用Fragment的请求权限代码(分析见下文，这里主要讲请求模式)。
-
-    第19～24行，即ensure模式的主要代码。可见批量请求代码时只要有一个权限被拒绝，则请求结果为false。
-
--   ensureEachCombined(requestEachCombined)
-
-    ```
-    return Observable.just(new Permission(permissions));
-    ```
-
-    这里只附上关键代码，其余部分和上面一致。
-
-    该模式具体实现的秘密就在new Permission(permission)中，
-
-    ```
-    public Permission(List<Permission> permissions) {
-        name = combineName(permissions);
-        granted = combineGranted(permissions);
-        shouldShowRequestPermissionRationale = combineShouldShowRequestPermissionRationale(permissions);
-    }
-    ```
-
-    ```
-    private String combineName(List<Permission> permissions) {
-        return Observable.fromIterable(permissions)
-                .map(new Function<Permission, String>() {
-                    @Override
-                    public String apply(Permission permission) throws Exception {
-                        return permission.name;
-                    }
-                }).collectInto(new StringBuilder(), new BiConsumer<StringBuilder, String>() {
-                    @Override
-                    public void accept(StringBuilder s, String s2) throws Exception {
-                        if (s.length() == 0) {
-                            s.append(s2);
-                        } else {
-                            s.append(", ").append(s2);
-                        }
-                    }
-                }).blockingGet().toString();
-    }
-
-    private Boolean combineGranted(List<Permission> permissions) {
-        return Observable.fromIterable(permissions)
-                .all(new Predicate<Permission>() {
-                    @Override
-                    public boolean test(Permission permission) throws Exception {
-                        return permission.granted;
-                    }
-                }).blockingGet();
-    }
-
-    private Boolean combineShouldShowRequestPermissionRationale(List<Permission> permissions) {
-        return Observable.fromIterable(permissions)
-                .any(new Predicate<Permission>() {
-                    @Override
-                    public boolean test(Permission permission) throws Exception {
-                        return permission.shouldShowRequestPermissionRationale;
-                    }
-                }).blockingGet();
-    }
-    ```
-
-    三个方法分别对权限名称、状态、是否继续弹出请求框进行了combine。
-
-    ![](https://ws3.sinaimg.cn/large/006tNc79gy1foyfj2q52yj313e0im771.jpg)
-
-    collectInto操作符将各权限名称进行拼接，并过滤重复权限。 ![](https://ws3.sinaimg.cn/large/006tNc79gy1foyfoeqyktj312w0howgz.jpg)
-
-    all操作符过滤所有权限请求结果，只有当所有权限均granted为true的时候才会返回true。
-
-    ![](https://ws4.sinaimg.cn/large/006tNc79gy1foyfogr30aj313q0is765.jpg)
-
-    any操作符过滤所有继续弹出请求框，只要有一个请求需要继续弹出弹框，则回调permission.shouldShowRequestPermissionRationale。
-
-##### 发起/回调权限请求
-
-request(o, permissions)方法内部由requestImplementation方法具体实现权限请求：
+requestImplementation方法具体实现权限请求：
 
 ```
 @TargetApi(Build.VERSION_CODES.M)
@@ -342,6 +208,8 @@ dependencies {
 使用方式：
 
 ```
+mResultBack = new ResultBack(this);
+
 btnSuccess.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -363,6 +231,20 @@ btnSuccess.setOnClickListener(new View.OnClickListener() {
     }
 });
 ```
+
+###### 创建实例
+
+```
+
+```
+
+###### Fragment处理onActivityResult
+
+```
+
+```
+
+
 
 ###### RxJava版本使用
 
@@ -405,38 +287,6 @@ RxView.clicks(btnSuccess)
             }
         });
 ```
-
-###### Fragment请求源码分析
-
-```
-private Map<Integer, PublishSubject<ResultInfo>> mSubjects = new HashMap<>();
-
-public Observable<ResultInfo> startForResult(final Intent intent) {
-    final PublishSubject<ResultInfo> subject = PublishSubject.create();
-    return subject.doOnSubscribe(new Consumer<Disposable>() {
-        @Override
-        public void accept(Disposable disposable) throws Exception {
-            mSubjects.put(subject.hashCode(), subject);
-            startActivityForResult(intent, subject.hashCode());
-        }
-    });
-}
-
-@Override
-public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    //rxjava方式的处理
-    PublishSubject<ResultInfo> subject = mSubjects.remove(requestCode);
-    if (subject != null) {
-        subject.onNext(new ResultInfo(resultCode, data));
-        subject.onComplete();
-    }
-}
-```
-
-首先创建一个Map维护请求列表，每次startActivityForResult和onActivityResult时分别存入和移除subject。
-
-第20～21行发送onNext和onComplete到请求下游。
 
 #### 总结
 
