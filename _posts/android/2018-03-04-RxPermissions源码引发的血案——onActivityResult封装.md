@@ -109,86 +109,6 @@ private RxPermissionsFragment findRxPermissionsFragment(Activity activity) {
 
 可以看出```new RxPermissions(MainActivity.this)```时根据传了的```Activity```会创建一个```Fragment```，在这个Fragment中处理动态权限请求。
 
-###### 三种请求模式
-
-![](https://ws2.sinaimg.cn/large/006tNc79gy1foyfjcy5duj31as0c0406.jpg)
-
-###### 发起/回调权限请求
-
-requestImplementation方法具体实现权限请求：
-
-```
-@TargetApi(Build.VERSION_CODES.M)
-Observable<Permission> requestImplementation(final String... permissions) {
-    List<Observable<Permission>> list = new ArrayList<>(permissions.length);
-    List<String> unrequestedPermissions = new ArrayList<>();
-
-    // In case of multiple permissions, we create an Observable for each of them.
-    // At the end, the observables are combined to have a unique response.
-    for (String permission : permissions) {
-        mRxPermissionsFragment.log("Requesting permission " + permission);
-        if (isGranted(permission)) {
-            // Already granted, or not Android M
-            // Return a granted Permission object.
-            list.add(Observable.just(new Permission(permission, true, false)));
-            continue;
-        }
-
-        if (isRevoked(permission)) {
-            // Revoked by a policy, return a denied Permission object.
-            list.add(Observable.just(new Permission(permission, false, false)));
-            continue;
-        }
-
-        PublishSubject<Permission> subject = mRxPermissionsFragment.getSubjectByPermission(permission);
-        // Create a new subject if not exists
-        if (subject == null) {
-            unrequestedPermissions.add(permission);
-            subject = PublishSubject.create();
-            mRxPermissionsFragment.setSubjectForPermission(permission, subject);
-        }
-
-        list.add(subject);
-    }
-
-    if (!unrequestedPermissions.isEmpty()) {
-        String[] unrequestedPermissionsArray = unrequestedPermissions.toArray(new String[unrequestedPermissions.size()]);
-        requestPermissionsFromFragment(unrequestedPermissionsArray);
-    }
-    return Observable.concat(Observable.fromIterable(list));
-}
-```
-
-第6～32行筛选出需要请求的权限列表，第36行开始由Fragment发起权限请求。
-
-```
-@TargetApi(Build.VERSION_CODES.M)
-void requestPermissions(@NonNull String[] permissions) {
-    requestPermissions(permissions, PERMISSIONS_REQUEST_CODE);
-}
-```
-
-```
-void onRequestPermissionsResult(String permissions[], int[] grantResults, boolean[] shouldShowRequestPermissionRationale) {
-    for (int i = 0, size = permissions.length; i < size; i++) {
-        log("onRequestPermissionsResult  " + permissions[i]);
-        // Find the corresponding subject
-        PublishSubject<Permission> subject = mSubjects.get(permissions[i]);
-        if (subject == null) {
-            // No subject found
-            Log.e(RxPermissions.TAG, "RxPermissions.onRequestPermissionsResult invoked but didn't find the corresponding permission request.");
-            return;
-        }
-        mSubjects.remove(permissions[i]);
-        boolean granted = grantResults[i] == PackageManager.PERMISSION_GRANTED;
-        subject.onNext(new Permission(permissions[i], granted, shouldShowRequestPermissionRationale[i]));
-        subject.onComplete();
-    }
-}
-```
-
-上述两段代码即为Fragment中发起权限请求和请求回调的方法，第12～14行可看出权限请求回调后依次发送onNext和onComplete事件发送给下游接收者。
-
 #### onActivityResult封装
 
 仿照RxPermissions中封装Fragment发起请求的方式，对startActivityForResult和onActivityResult进行封装，即为今天我要介绍的项目[ResultCallBack](https://github.com/j1406493495/ResultBack)，Github地址：https://github.com/j1406493495/ResultBack。
@@ -235,13 +155,50 @@ btnSuccess.setOnClickListener(new View.OnClickListener() {
 ###### 创建实例
 
 ```
+public ResultBack(Fragment fragment){
+    this(fragment.getActivity());
+}
 
+private ResultBackFragment getResultBackFragment(Activity activity) {
+    ResultBackFragment resultBackFragment = findResultBackFragment(activity);
+    if (resultBackFragment == null) {
+        resultBackFragment = new ResultBackFragment();
+        FragmentManager fragmentManager = activity.getFragmentManager();
+        fragmentManager
+                .beginTransaction()
+                .add(resultBackFragment, TAG)
+                .commitAllowingStateLoss();
+        fragmentManager.executePendingTransactions();
+    }
+    return resultBackFragment;
+}
+
+private ResultBackFragment findResultBackFragment(Activity activity) {
+    return (ResultBackFragment) activity.getFragmentManager().findFragmentByTag(TAG);
+}
 ```
+
+
 
 ###### Fragment处理onActivityResult
 
 ```
+private Map<Integer, ResultBack.Callback> mCallbacks = new HashMap<>();
 
+public void startForResult(Intent intent, ResultBack.Callback callback) {
+    mCallbacks.put(callback.hashCode(), callback);
+    startActivityForResult(intent, callback.hashCode());
+}
+
+@Override
+public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    //callback方式的处理
+    ResultBack.Callback callback = mCallbacks.remove(requestCode);
+    if (callback != null) {
+        callback.onActivityResult(new ResultInfo(resultCode, data));
+    }
+}
 ```
 
 
