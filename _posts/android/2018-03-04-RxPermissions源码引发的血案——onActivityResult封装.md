@@ -30,9 +30,7 @@ tags:
 
 前提有了，接下来我们就来搞点事情，鼓捣鼓捣。。。
 
-#### RxPermissions源码分析
-
-###### RxPermission简单使用
+#### RxPermissions分析
 
 ```
 RxJavaInterop.toV2Observable(
@@ -80,8 +78,6 @@ RxJavaInterop.toV2Observable(
 
 RxPermission源码包含三个类，```RxPermissions.java```、```Permission.java```和```RxPermissionsFragment.java```。其中```RxPermissions.java```负责与外界的调用关系，包括创建实例，多种请求模式维护；```Permission.java```负责保存权限的名称和状态；```RxPermissionsFragment.java```负责发起权限请求和回调。
 
-###### 创建实例
-
 ```
 public RxPermissions(@NonNull Activity activity) {
     mRxPermissionsFragment = getRxPermissionsFragment(activity);
@@ -115,7 +111,7 @@ private RxPermissionsFragment findRxPermissionsFragment(Activity activity) {
 
 其中master分支为非RxJava版本，rxjava分支为RxJava版本。
 
-###### 非RxJava版本使用
+#####非RxJava版本使用
 
 添加依赖：
 
@@ -152,11 +148,13 @@ btnSuccess.setOnClickListener(new View.OnClickListener() {
 });
 ```
 
+#####ResultBack源码分析
+
 ###### 创建实例
 
 ```
-public ResultBack(Fragment fragment){
-    this(fragment.getActivity());
+public ResultBack(Activity activity) {
+    mResultBackFragment = getResultBackFragment(activity);
 }
 
 private ResultBackFragment getResultBackFragment(Activity activity) {
@@ -178,7 +176,7 @@ private ResultBackFragment findResultBackFragment(Activity activity) {
 }
 ```
 
-
+ResultBack创建实例部分同RxPermission，从getResultBackFragment方法可知若传入的Activity中没有用来请求startActicityForResult的Fragment，则创建一个与之对应的Fragment，该Fragment负责对应Activity中的请求。
 
 ###### Fragment处理onActivityResult
 
@@ -201,7 +199,20 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
 }
 ```
 
+```
+public interface Callback {
+    void onActivityResult(ResultInfo resultInfo);
+}
+```
 
+```
+public ResultInfo(int resultCode, Intent data) {
+    this.resultCode = resultCode;
+    this.data = data;
+}
+```
+
+创建一个Map存储Fragment中所有Callback，
 
 ###### RxJava版本使用
 
@@ -247,6 +258,6 @@ RxView.clicks(btnSuccess)
 
 #### 总结
 
-至此，RxPermissions源码分析和onActivityResult封装就结束了。
+至此，onActivityResult封装就结束了。
 
 阅读Github优质开源项目的源码，从中提取精华代码，并运用的实际项目中，是一种开发进阶的好方法，上述源码分析中有任何错误的地方，还请大家多多反馈，共同学习进步。
