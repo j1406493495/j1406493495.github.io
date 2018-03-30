@@ -176,7 +176,7 @@ private ResultBackFragment findResultBackFragment(Activity activity) {
 }
 ```
 
-ResultBack创建实例部分同RxPermission，从getResultBackFragment方法可知若传入的Activity中没有用来请求startActicityForResult的Fragment，则创建一个与之对应的Fragment，该Fragment负责对应Activity中的请求。
+ResultBack创建实例部分同RxPermissions，从getResultBackFragment方法可知若传入的Activity中没有用来请求startActicityForResult的Fragment，则创建一个与之对应的Fragment，该Fragment负责对应Activity中的请求。
 
 ###### Fragment处理onActivityResult
 
@@ -212,7 +212,11 @@ public ResultInfo(int resultCode, Intent data) {
 }
 ```
 
-创建一个Map存储Fragment中所有Callback，
+创建一个Map存储Fragment中所有Callback，Callback接口中onActivityResult方法回调ResultInfo类，该类包含resultCode和Intent。
+
+由startForResult方法发起请求，其中以callback.hashCode()为key，callback为value存入map；
+
+Fragment中onActivityResult得到请求结果，根据requestCode从map中获取对应的callback并完成请求结果回调。
 
 ###### RxJava版本使用
 
