@@ -14,10 +14,10 @@ links:
   - name:         首页
     url:          /
     external:     false
-  - name:         Android
+  - name:         饭碗
     url:          /android
     external:     false
-  - name:         学点经济学
+  - name:         情操
     url:          /economics
     external:     false
   - name:         标签
