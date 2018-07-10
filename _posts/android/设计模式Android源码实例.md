@@ -24,3 +24,5 @@
 |   外观模式   |            Context和ContextImpl             |
 |   桥接模式   |            Window和WindowManager            |
 
+
+
