@@ -14,7 +14,7 @@ links:
   - name:         首页
     url:          /
     external:     false
-  - name:         饭碗
+  - name:         技术
     url:          /android
     external:     false
   - name:         三观
