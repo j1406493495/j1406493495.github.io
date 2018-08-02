@@ -1,7 +1,7 @@
 ---
 layout: blog 
 android: true 
-istop: true
+istop: false
 title: "dagger Apt源码图谱" 
 background-image: https://ws4.sinaimg.cn/large/006tNc79gy1ft827p9rnmj31kw1z4x6q.jpg
 date:  2018-07-13
