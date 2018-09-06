@@ -1,7 +1,7 @@
 ---
 layout: blog 
 android: true 
-istop: false
+istop: true
 title: "startService流程" 
 background-image: https://ws1.sinaimg.cn/large/006tNbRwgy1fuyt6604zmj31kw2df7wh.jpg
 date:  2018-09-05
