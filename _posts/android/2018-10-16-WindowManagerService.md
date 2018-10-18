@@ -58,7 +58,7 @@ mClient对象数据类型为IWindow，是app端的ViewRootImpl.W服务的binder�
 
 mSession对象数据类型为Session，是system_server的Binder服务端；
 
-mToken用于跟AMS交互。
+mToken(指向ActivityRecord)用于跟AMS交互。
 
 ### viewRootImpl（服务端）
 
