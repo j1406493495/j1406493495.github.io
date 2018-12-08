@@ -18,6 +18,6 @@ redirect_from:
 
 你可以通过以下几种方式联系到我。
 
-* [发邮件](mailto:jin_wang_hui@163.com)
+* [发邮件](mailto:jin_wang_hui@163.com) : jin_wang_hui@163.com
 * 微信公众号：xiao2class
 
