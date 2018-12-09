@@ -2,9 +2,9 @@
 layout: blog 
 android: true 
 istop: false
-title: "应用窗口创建流程" 
+title: "系统窗口Toast创建流程" 
 background-image: https://ws4.sinaimg.cn/large/006tNbRwly1fxxecso9kij30mu0y0q57.jpg
-date:  2018-12-06
+date:  2018-12-09
 category: Android
 tags: 
 - Android
@@ -12,4 +12,27 @@ tags:
 
 ---
 
-## 应用窗口创建流程
+## 系统窗口Toast创建流程
+
+#### 系统窗口与应用窗口的区别
+
+- 系统窗口不依赖于应用，应用窗口必须有一个Activity与之对应。
+- 系统窗口由系统创建，应用窗口没有权限创建，除TYPE_TOAST、TYPE_INPUT_METHOD、TYPE_WALLPAPER外。
+
+#### Toast调用流程
+
+```java
+Toast.makeText(context, "Hello", Toast.LENGTH_SHORT).show();
+```
+
+makeText()方法创建一个Toast对象，方法中会根据系统的layout创建一个车View对象，并赋值给mNextView变量。
+
+由此可见，**在framework层面，我们更改layout即可自定义Toast风格**。
+
+show()方法通过调用“通知管理器”的enqueueToast()，将该对象放入消息队列mToastQueue中。
+
+接下来showNextToastLocked()会从队列中取出一个Toast对象，调用其内部的show()方法，该方法真正向WMS添加窗口。
+
+同理，cancelToastLocked()会从对象中移除一个Toast对象。
+
+**通知管理器NotificationManager保证了Toast的串行工作。**
