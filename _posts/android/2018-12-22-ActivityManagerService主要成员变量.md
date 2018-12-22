@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "ActivityManagerService主要成员变量" 
-background-image: https://ws2.sinaimg.cn/large/006tNbRwly1fy0v85thivj31970u0dpq.jpg
+background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fyfulhkibij31hy0u0te0.jpg
 date:  2018-12-22
 category: Android
 tags: 
