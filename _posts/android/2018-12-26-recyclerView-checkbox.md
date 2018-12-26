@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "recyclerView中checkbox混乱问题" 
-background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fyi66f4rzjj30me0xcgpd.jpg
+background-image: https://ws4.sinaimg.cn/large/006tNbRwly1fykbxs6v0aj31990u0tcz.jpg
 date:  2018-12-26
 category: Android
 tags: 
