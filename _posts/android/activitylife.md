@@ -2,9 +2,9 @@
 layout: blog 
 android: true 
 istop: false
-title: "recyclerView中checkbox混乱问题" 
-background-image: https://ws4.sinaimg.cn/large/006tNbRwly1fykbxs6v0aj31990u0tcz.jpg
-date:  2018-12-26
+title: "Android 生命周期" 
+background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fysliupeqdj319c0u011p.jpg
+date:  2019-01-02
 category: Android
 tags: 
 - Android
@@ -12,37 +12,26 @@ tags:
 
 ---
 
-## recyclerView中checkbox混乱问题
+## Android 生命周期
 
-```java
-  public void onBind(final int position) {
-            final OrderMo orderMo = mOrderMos.get(position);
-            cbCancelOrder.setOnCheckedChangeListener(null);
+- 首次启动
 
-            if (orderMo.state == 1) {
-                cbCancelOrder.setEnabled(false);
-                cbCancelOrder.setChecked(true);
-            } else if (orderMo.state == 0) {
-                cbCancelOrder.setEnabled(true);
-                cbCancelOrder.setChecked(false);
-            } else {
-                cbCancelOrder.setEnabled(true);
-                cbCancelOrder.setChecked(true);
-            }
+    onCreate()->onStart()->onResume()。
 
-            cbCancelOrder.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    orderMo.state = isChecked ? 2 : 0;
-                }
-            });
-        }
-```
+- 按下返回键
 
-在配置checkbox变量前，将监听设置为null
+    onPause()->onStop()->onDestory()。
 
-```java
-cbCancelOrder.setOnCheckedChangeListener(null);
-```
+- 按下Home键
 
-即可解决复用问题。
+    onPause()->onSaveInstanceSave()->onStop()。
+
+- 再次打开
+
+    onRestart()->onStart()->onResume()。
+
+- 屏幕旋转
+
+    onPause()->onSaveInstanceState()->onStop()->onDestory()->onCreate()->onStart()
+
+    ->onRestoreInstanceState()->onResume()。
