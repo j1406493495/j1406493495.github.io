@@ -18,7 +18,7 @@ redirect_from:
  - 技术博客：[http://woong.cn](http://woong.cn)
  - Github：[https://github.com/j1406493495](https://github.com/j1406493495)
 
-# 个人独立开发项目
+# 独立开发项目
 
 - [Readhub](https://github.com/j1406493495/ReadHub)
 
