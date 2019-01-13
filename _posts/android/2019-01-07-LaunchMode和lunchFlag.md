@@ -69,3 +69,4 @@ SingleTop和SingleTask模式，且目标Activity已在Task中，会调用onNewIn
 - FLAG_ACTIVITY_NO_USER_ACTION
 
     不响应onUserLeaveHint方法
+
