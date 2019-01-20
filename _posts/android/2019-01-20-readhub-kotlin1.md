@@ -2,7 +2,7 @@
 layout: blog 
 android: true 
 istop: false
-title: "ReadHub项目Java转Kotlin填坑指南(一)" 
+title: "ReadHub项目Java转Kotlin填坑指南(一、环境转换)" 
 background-image: https://ws2.sinaimg.cn/large/006tNc79ly1fzdaksqgo0j31930u0n40.jpg
 date:  2019-01-20
 category: Android
@@ -40,7 +40,7 @@ Java版本已在Github开源，项目地址：https://github.com/j1406493495/Rea
 
 下面开始，就是我的爬坑指南。。。
 
-![](/Users/wong/Library/Application Support/typora-user-images/image-20190120203116640.png)
+![](https://ws4.sinaimg.cn/large/006tNc79ly1fzdcz6zqbmj30ly02ot8y.jpg)
 
 #### Kotlin plugin下载
 
