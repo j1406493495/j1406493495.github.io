@@ -2,7 +2,7 @@
 layout: blog 
 android: true 
 istop: false
-title: "Windwos环境Jenkins+fir搭建打包服务器填坑总结" 
+title: "Windows环境Jenkins+fir搭建打包服务器填坑总结" 
 background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fwlpgbu9mzj31kw10tkjr.jpg
 date:  2018-10-26
 category: Android
