@@ -1,7 +1,7 @@
 ---
 layout: blog 
 android: true 
-istop: false
+istop: true
 title: "ReadHub项目Kotlin版开发指南(一、环境搭建)" 
 background-image: https://ws2.sinaimg.cn/large/006tNc79ly1fzdaksqgo0j31930u0n40.jpg
 date:  2019-01-21
