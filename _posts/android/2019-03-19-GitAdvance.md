@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "git 高级功能" 
-background-image: https://ws4.sinaimg.cn/large/006tKfTcgy1g0jollfrzyj30u0140hdv.jpg
+background-image: https://ws4.sinaimg.cn/large/006tKfTcly1g0wu7euc67j31900u04qp.jpg
 date:  2019-03-19
 category: Android
 tags: 
