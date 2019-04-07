@@ -82,15 +82,15 @@ tags:
 
 ### git reflog
 
-讲 `git reflog` 之前，先介绍一下 git 中的 HEAD 和 branch。**HEAD 和 branch 可以类同理解为 C 语言中的指针。** 
+讲 `git reflog` 之前，先介绍一下 `git` 中的 `HEAD` 和 `branch`。**HEAD 和 branch 可以类同理解为 C 语言中的指针。** 
 
-`branch` 指针指向某个节点，HEAD 既可以指向 `branch`，也可以指向节点。
+`branch` 指针指向某个节点，`HEAD` 既可以指向 `branch`，也可以指向节点。
 
-`git checkout` 命令负责切换 HEAD 指针的指向。
+`git checkout` 命令负责切换 `HEAD` 指针的指向。
 
-接下来讲 `git reflog` 指令就会好理解很多，该指令会显示 HEAD 指针的所有走向记录，包含那些已经不需要的节点或分支记录。
+接下来讲 `git reflog` 指令就会好理解很多，该指令会显示 `HEAD` 指针的所有走向记录，包含那些已经不需要的节点或分支记录。
 
-git reflog dev 查看 dev 分支上的所有 HEAD 走向记录：
+`git reflog dev` 查看 `dev` 分支上的所有 `HEAD` 走向记录：
 
 ![](https://ws3.sinaimg.cn/large/006tKfTcly1g1it4eztv7j31ek0awtcp.jpg)
 
