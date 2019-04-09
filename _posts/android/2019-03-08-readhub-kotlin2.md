@@ -12,6 +12,12 @@ tags:
 
 ---
 
+[ReadHub项目Kotlin版转换指南(一、环境搭建)](<http://woong.cn/2019/01/21/readhub-kotlin1.html>)
+
+[ReadHub项目Kotlin版转换指南(二、数据库和网络请求)](<http://woong.cn/2019/03/08/readhub-kotlin2.html>)
+
+[ReadHub项目Kotlin版转换指南(三、MVP架构)](<http://woong.cn/2019/03/17/readhub-kotlin3.html>)
+
 # ReadHub项目Kotlin版转换指南(二、数据库和网络请求)
 
 ## 数据库

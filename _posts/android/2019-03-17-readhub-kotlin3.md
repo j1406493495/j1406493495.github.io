@@ -12,6 +12,12 @@ tags:
 
 ---
 
+[ReadHub项目Kotlin版转换指南(一、环境搭建)](<http://woong.cn/2019/01/21/readhub-kotlin1.html>)
+
+[ReadHub项目Kotlin版转换指南(二、数据库和网络请求)](<http://woong.cn/2019/03/08/readhub-kotlin2.html>)
+
+[ReadHub项目Kotlin版转换指南(三、MVP架构)](<http://woong.cn/2019/03/17/readhub-kotlin3.html>)
+
 # ReadHub项目Kotlin版转换指南(三、MVP架构)
 
 Android 开发中的 MVP 架构相信大家都已经熟悉，不熟悉的请右转 Google，ReadHub 项目从 Java 转换成 Kotlin 过程中，我们需要一套新的架构方式来实现（Kotlin 项目中没有使用 dagger2）。
