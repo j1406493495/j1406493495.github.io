@@ -50,6 +50,13 @@ tags:
 
 存放用户安装的 `app`。
 
+### /data/system
+
+该目录存放对维护设备状态非常重要为文件，该目录的权限是 `system:system`。
+
+- packages.list 所有安装在系统中的包（Apk）
+- packages.xml 所有安装包的元数据
+
 ### /data/data/xxx
 
 用户安装的应用数据。
