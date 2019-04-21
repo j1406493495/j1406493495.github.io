@@ -1,7 +1,7 @@
 ---
 layout: blog 
 android: true 
-istop: false
+istop: true
 title: "git 高级功能" 
 background-image: https://ws4.sinaimg.cn/large/006tKfTcly1g0wu7euc67j31900u04qp.jpg
 date:  2019-03-19
