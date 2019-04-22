@@ -52,6 +52,12 @@ tags:
 
 同 `merge` 一样，`rebase` 过程发生冲突的话，就请各位大佬自行解决一下。
 
+> 切记不要将有远程分支的本地分支（如 `origin/master->master`）`rebase` 到与其有分叉的其他分支，会导致重复提交。
+>
+> 因为 `rebase` 后的分叉节点 `commint hash` 和 远程 `commit hash` 不是同一个值。
+>
+> `rebase` 后 `git` 会要求你重新 `pull` 远程 `commit`，那么项目结构中就会存在 `rebase` 前和 `rebase` 后的重复分叉节点。
+
 ### git bisect
 
 假设在节点 f1cdc8 中埋了个 bug，直到节点 c68c4c 才暴露出来，为了揪出节点 f1cdc8，`git bisect` 就派上用场了。
