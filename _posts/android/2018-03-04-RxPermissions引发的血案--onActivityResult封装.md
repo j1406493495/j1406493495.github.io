@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: true 
 title: "RxPermissions引发的血案——onActivityResult封装" 
-background-image: https://ws4.sinaimg.cn/large/006tNc79gy1fp15k0bwqkj31fm0v8n67.jpg
+background-image: https://i.loli.net/2019/06/15/5d04a3255874222390.jpg
 date:  2018-03-04
 category:  Android
 tags: 

@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "Application onTerminate使用误区" 
-background-image: https://ws1.sinaimg.cn/large/0069RVTdgy1fuzu4343orj31kw2daqv7.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bbfdebb1513929.jpg
 date:  2018-09-06
 category: Android 
 tags: 

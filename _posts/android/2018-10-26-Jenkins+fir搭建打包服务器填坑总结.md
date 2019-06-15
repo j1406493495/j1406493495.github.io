@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "Windows环境Jenkins+fir搭建打包服务器填坑总结" 
-background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fwlpgbu9mzj31kw10tkjr.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bdbfe54dd19208.jpg
 date:  2018-10-26
 category: Android
 tags: 
@@ -13,7 +13,7 @@ tags:
 
 **【1，Jenkins安装步骤Getting Started长时间无反应】**
 
-![gettingstarted](https://ws3.sinaimg.cn/large/006tNbRwly1fwlpjjgvfuj30re0i540b.jpg)
+![gettingstarted](https://i.loli.net/2019/06/15/5d04bdd58b7da47382.jpg)
 
 **【解决方案】**
 
@@ -43,7 +43,7 @@ Client error: HTTP 500 Internal Server Error
 
 **解决方案**
 
-![](https://ws4.sinaimg.cn/large/006tNbRwly1fwlpyrxgnaj31e80hadhu.jpg)
+![](https://i.loli.net/2019/06/15/5d04bdf71641240275.jpg)
 
 如上图所示，URL地址必须为http形式，不能为ssh。
 

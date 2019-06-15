@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: true
 title: "从变量角度分析WindowManagerService" 
-background-image: https://ws3.sinaimg.cn/large/006tNbRwly1fw9vq0tpplj31kw11xhdx.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bcf08e50023492.jpg
 date:  2018-10-16
 category: Android
 tags: 

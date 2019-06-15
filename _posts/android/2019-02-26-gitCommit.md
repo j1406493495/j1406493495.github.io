@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "git commit 模版配置" 
-background-image: https://ws4.sinaimg.cn/large/006tKfTcgy1g0jollfrzyj30u0140hdv.jpg
+background-image: https://i.loli.net/2019/06/15/5d04cd7353e8747207.jpg
 date:  2019-02-26
 category: Android
 tags: 
@@ -38,7 +38,7 @@ tags:
 
 ​	终端输入 `git commit` 命令，无需添加 -m 参数，即会打开上面配置的编辑器进行 commit 信息编辑。
 
-![](https://ws4.sinaimg.cn/large/006tKfTcgy1g1iffyqzbrj30mk08i3zo.jpg)
+![](https://i.loli.net/2019/06/15/5d04cd8c74fbf75752.jpg)
 
 
 

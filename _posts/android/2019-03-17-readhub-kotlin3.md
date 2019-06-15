@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: true
 title: "ReadHub项目Kotlin版开发指南(三、MVP架构)" 
-background-image: https://ws2.sinaimg.cn/large/006tNc79ly1fzdaksqgo0j31930u0n40.jpg
+background-image: https://i.loli.net/2019/06/15/5d04c12b4519788354.jpg
 date:  2019-03-17
 category: Android
 tags: 

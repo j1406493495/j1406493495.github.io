@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "Android 错误杂集" 
-background-image: https://ws2.sinaimg.cn/large/006tNc79ly1fyx9r9zmdmj30mc0xi3zq.jpg
+background-image: https://i.loli.net/2019/06/15/5d04c0daa7ae145086.jpg
 date:  2019-01-06
 category: Android
 tags: 

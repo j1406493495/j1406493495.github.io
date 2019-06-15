@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "LaunchMode和LaunchFlag" 
-background-image: https://ws1.sinaimg.cn/large/006tNc79ly1fyyezydxpwj31510u0wis.jpg
+background-image: https://i.loli.net/2019/06/15/5d04c0f6287dc36212.jpg
 date:  2019-01-07
 category: Android
 tags: 
@@ -36,7 +36,7 @@ SingleTop和SingleTask模式，且目标Activity已在Task中，会调用onNewIn
 
 *注意：一个Task未结束时，按返回键不会跳到其他Task。*
 
-![](https://ws2.sinaimg.cn/large/006tNc79ly1fyyexd1s26j30fy08pwff.jpg)
+![](https://i.loli.net/2019/06/15/5d04c10ae7d1d37252.jpg)
 
 ### LaunchFlag
 

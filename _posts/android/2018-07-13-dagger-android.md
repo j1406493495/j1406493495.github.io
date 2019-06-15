@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "dagger Apt源码图谱" 
-background-image: https://ws4.sinaimg.cn/large/006tNc79gy1ft827p9rnmj31kw1z4x6q.jpg
+background-image: https://i.loli.net/2019/06/15/5d04aa8aa52ef43878.jpg
 date:  2018-07-13
 category: Android 
 tags: 
@@ -14,7 +14,7 @@ tags:
 
 ## Dagger apt源码图谱
 
-![dagger](https://ws4.sinaimg.cn/large/006tNc79gy1ft8261dya2j314m0vk78j.jpg)
+![dagger](https://i.loli.net/2019/06/15/5d04aa9fcc79279957.jpg)
 
 `SimpleModule_ProviderStudentFactory` 类负责创建 `Student` 对象；
 

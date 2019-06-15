@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "ReadHub项目Java转Kotlin填坑指南(一、环境转换)" 
-background-image: https://ws2.sinaimg.cn/large/006tNc79ly1fzdaksqgo0j31930u0n40.jpg
+background-image: https://i.loli.net/2019/06/15/5d04c12b4519788354.jpg
 date:  2019-01-20
 category: Android
 tags: 
@@ -40,19 +40,19 @@ Java版本已在Github开源，项目地址：https://github.com/j1406493495/Rea
 
 下面开始，就是我的爬坑指南。。。
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fzdcz6zqbmj30ly02ot8y.jpg)
+![]()
 
 #### Kotlin plugin下载
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fzdcc4l01dj31ad0u0wjb.jpg)
+![](https://i.loli.net/2019/06/15/5d04cfc59fb5271358.jpg)
 
 #### project中的build.gradle
 
-![](https://ws1.sinaimg.cn/large/006tNc79ly1fzdcgi7aicj312a0qidj3.jpg)
+![](https://i.loli.net/2019/06/15/5d04cfdba290942883.jpg)
 
 #### app中的build.gradle
 
-![](https://ws2.sinaimg.cn/large/006tNc79ly1fzdcm94t8oj30xp0u0n3y.jpg)
+![](https://i.loli.net/2019/06/15/5d04cfeee311569078.jpg)
 
 环境搭建完成，下面就让我们开始愉快地转化项目吧。
 

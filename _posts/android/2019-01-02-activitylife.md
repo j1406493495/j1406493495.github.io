@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "Android 生命周期" 
-background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fysliupeqdj319c0u011p.jpg
+background-image: https://i.loli.net/2019/06/15/5d04c0a72802199062.jpg
 date:  2019-01-02
 category: Android
 tags: 
@@ -14,7 +14,7 @@ tags:
 
 ## Android 生命周期
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fyuwteub78j30u01s1hdu.jpg)
+![](https://i.loli.net/2019/06/15/5d04c0b9af44765323.jpg)
 
 - 首次启动
 

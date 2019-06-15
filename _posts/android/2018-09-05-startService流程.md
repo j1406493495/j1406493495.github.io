@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: true
 title: "startService启动流程" 
-background-image: https://ws1.sinaimg.cn/large/006tNbRwgy1fuyt6604zmj31kw2df7wh.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bbbf98c0258163.jpg
 date:  2018-09-05
 category: Android 
 tags: 
@@ -14,7 +14,7 @@ tags:
 
 ## StartService流程图
 
-![流程](https://ws3.sinaimg.cn/large/006tNbRwgy1fuyt1wzkmmj31kw12s7co.jpg)
+![流程](https://i.loli.net/2019/06/15/5d04bbd28615812199.jpg)
 
 
 

@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "Android 常用文件系统" 
-background-image: https://ws2.sinaimg.cn/large/006tNc79ly1g1xyjtp4hcj30mi0y64qp.jpg
+background-image: https://i.loli.net/2019/06/15/5d04cf28d62ed70748.jpg
 date:  2019-04-10
 category: Android
 tags: 

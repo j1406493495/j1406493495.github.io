@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "PackageManagerService分析" 
-background-image: https://ws3.sinaimg.cn/large/006tNbRwly1fw8z507bogj31jk1xgx41.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bcb5b877552487.jpg
 date:  2018-10-15
 category: Android
 tags: 

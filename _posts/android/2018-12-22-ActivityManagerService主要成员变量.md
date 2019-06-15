@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "ActivityManagerService主要成员变量" 
-background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fyfulhkibij31hy0u0te0.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bf63727cd39612.jpg
 date:  2018-12-22
 category: Android
 tags: 
@@ -16,15 +16,15 @@ tags:
 
 ### ProcessRecord进程数据类
 
-![](https://ws3.sinaimg.cn/large/006tNbRwly1fyfu5msknjj319g0mwwlp.jpg)
+![](https://i.loli.net/2019/06/15/5d04bf7a55a3635136.jpg)
 
 ### ActivityRecord数据类
 
-![](https://ws3.sinaimg.cn/large/006tNbRwly1fyfu6pcwyaj318w09swka.jpg)
+![](https://i.loli.net/2019/06/15/5d04bfa484ff689799.jpg)
 
 ### TaskRecord类
 
-![](https://ws1.sinaimg.cn/large/006tNbRwly1fyfu7e1emcj319608kwh2.jpg)
+![](https://i.loli.net/2019/06/15/5d04bfcada19262330.jpg)
 
 ### 重要调度相关变量
 

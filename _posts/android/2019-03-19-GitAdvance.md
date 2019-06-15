@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: true
 title: "git 高级功能" 
-background-image: https://ws4.sinaimg.cn/large/006tKfTcly1g0wu7euc67j31900u04qp.jpg
+background-image: https://i.loli.net/2019/06/15/5d04cde52aaa283787.jpg
 date:  2019-03-19
 category: Android
 tags: 
@@ -20,23 +20,23 @@ tags:
 
 - 项目展示
 
-  ![](https://ws2.sinaimg.cn/large/006tKfTcly1g1hkacayvaj311002uq3b.jpg)
+  ![](https://i.loli.net/2019/06/15/5d04cdf85cf4928813.jpg)
 
 - 分支展示
 
-  ![分支](https://ws4.sinaimg.cn/large/006tKfTcly1g1hkas7zo1j311m034q2z.jpg)
+  ![分支](https://i.loli.net/2019/06/15/5d04ce0e8fe3024174.jpg)
 
 - `master` 分支展示
 
-  ![](https://ws1.sinaimg.cn/large/006tKfTcly1g1hkbrm5hcj319k0lkwi9.jpg)
+  ![](https://i.loli.net/2019/06/15/5d04ce1fd0de853257.jpg)
 
 - `dev` 分支展示
 
-  ![](https://ws1.sinaimg.cn/large/006tKfTcly1g1hkbrm5hcj319k0lkwi9.jpg)
+  ![](https://i.loli.net/2019/06/15/5d04ce1fd0de853257.jpg)
 
 - 项目图展示(虚线为 `git rebase master` 后的结果)
 
-  ![](https://ws3.sinaimg.cn/large/006tKfTcly1g1hlctl9f0j317c0h4q4h.jpg)
+  ![](https://i.loli.net/2019/06/15/5d04cea368d6573140.jpg)
 
 **下面所有的讲述均已此仓库为实例。**
 
@@ -72,19 +72,19 @@ tags:
 
 - 第五步：`git bisect reset` 退出流程。
 
-  ![](https://ws2.sinaimg.cn/large/006tKfTcly1g1is6acesoj31b60io7bg.jpg)
+  ![](https://i.loli.net/2019/06/15/5d04cec75cc0682415.jpg)
 
 ### git blame
 
 当我们阅读团队中别人的代码时，有时候会对某一块代码疑惑不解，但是我不知道这是团队中哪位大佬写的啊，总不能一个一个问吧？
 
-![](https://ws4.sinaimg.cn/large/006tKfTcly1g1isqu4zb3j30ws01u74h.jpg)
+![](https://i.loli.net/2019/06/15/5d04cedfaef0317429.jpg)
 
 例如我想知道 test.txt 文件中的 "say master hello" 是谁写的？
 
 执行 `git blame test.txt`，就可以看到如下信息了：
 
-![](https://ws1.sinaimg.cn/large/006tKfTcly1g1isr5707yj30ys020aa9.jpg)
+![](https://i.loli.net/2019/06/15/5d04cef5e87ac42307.jpg)
 
 ### git reflog
 
@@ -98,7 +98,7 @@ tags:
 
 `git reflog dev` 查看 `dev` 分支上的所有 `HEAD` 走向记录：
 
-![](https://ws3.sinaimg.cn/large/006tKfTcly1g1it4eztv7j31ek0awtcp.jpg)
+![](https://i.loli.net/2019/06/15/5d04cf0a8cc5b64756.jpg)
 
 
 

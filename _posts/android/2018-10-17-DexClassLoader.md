@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: false
 title: "DexClassLoader的调用方法" 
-background-image: https://ws1.sinaimg.cn/large/006tNbRwly1fwb2skt5dhj31kw11xkjn.jpg
+background-image: https://i.loli.net/2019/06/15/5d04bd289665198969.jpg
 date:  2018-10-17
 category: Android
 tags: 

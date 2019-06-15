@@ -3,7 +3,7 @@ layout: blog
 android: true 
 istop: true
 title: "ReadHub项目Kotlin版开发指南(一、环境搭建)" 
-background-image: https://ws2.sinaimg.cn/large/006tNc79ly1fzdaksqgo0j31930u0n40.jpg
+background-image: https://i.loli.net/2019/06/15/5d04c12b4519788354.jpg
 date:  2019-01-21
 category: Android
 tags: 
@@ -44,27 +44,27 @@ Java版本已在 Github 开源，项目地址：[https://github.com/j1406493495/
 
 ### 一、打开 AndroidStudio，创建项目。
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fze9qb34d2j316c0q441y.jpg)
+![](https://i.loli.net/2019/06/15/5d04cb1e4d16e78063.jpg)
 
 ### 二、填写信息
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fze9q9dwjnj31io0u0tem.jpg)
+![](https://i.loli.net/2019/06/15/5d04cb4f4aba079410.jpg)
 
 ### 三、选择项目类型及初始状态
 
 选择适配手机。
 
-![](https://ws1.sinaimg.cn/large/006tNc79ly1fze9q79k8ij31480u00xb.jpg)
+![](https://i.loli.net/2019/06/15/5d04cb5880e3946813.jpg)
 
 为了直观的给大家看到效果，这里选择 “Empty Activity”，在实际的 ReadHub 项目中，我会使用 “Add No Activity”。
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fze9q3iummj314a0u0gow.jpg)
+![](https://i.loli.net/2019/06/15/5d04cb7974c6778113.jpg)
 
 ### 四、项目页面预览
 
-![](https://ws2.sinaimg.cn/large/006tNc79ly1fze9q1btqjj316i0u07as.jpg)
+![](https://i.loli.net/2019/06/15/5d04cb8f5082189739.jpg)
 
-![](https://ws3.sinaimg.cn/large/006tNc79ly1fze9pzqw0gj30u00u6guw.jpg)
+![](https://i.loli.net/2019/06/15/5d04cba33771035242.jpg)
 
 可以看到代码页面居然没有关键字高亮，这对于一个开发者来说，是不可接受的。
 
@@ -72,12 +72,13 @@ Java版本已在 Github 开源，项目地址：[https://github.com/j1406493495/
 
 ### 五、Plugin添加
 
-![](https://ws4.sinaimg.cn/large/006tNc79ly1fze9px321oj31ac0u00yq.jpg)
+![](https://i.loli.net/2019/06/15/5d04cbba3abec34916.jpg)
 
 ### 六、HelloWorld
 
 终于到最后一步了，点击页面上方的**绿色三角Run**，即可运行项目。
 
-![](https://ws1.sinaimg.cn/large/006tNc79ly1fze9pv6c42j31kf0u013x.jpg)
+![](https://i.loli.net/2019/06/15/5d04cbd26c56720009.jpg)
 
 成功运行 HelloWorld 即说明 Kotlin 环境已经搭建完成，接下来我们开始 ReadHub 项目开发之旅。
+
