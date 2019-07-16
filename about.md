@@ -12,9 +12,9 @@ redirect_from:
 
 # 个人信息
 
- - 金汪辉
- - 本科/中国计量大学
- - 工作年限：5年
+ - Woong
+ - 微信号：jwh147
+ - 微信公众号：WoongTalk
  - 技术博客：[http://woong.cn](http://woong.cn)
  - Github：[https://github.com/j1406493495](https://github.com/j1406493495)
 
@@ -27,6 +27,6 @@ redirect_from:
 你可以通过以下几种方式联系到我。
 
 * [发邮件](mailto:jin_wang_hui@163.com) : jin_wang_hui@163.com
-* 微信公众号：xiao2class
+* 微信公众号：WoongTalk
 * 微信号：jwh147
 
