@@ -153,9 +153,13 @@ public final class DiskLruCache implements Closeable {
   static final Pattern LEGAL_KEY_PATTERN = Pattern.compile("[a-z0-9_-]{1,64}");
   
   // 【Woong】四种缓存操作标记
+  // 【Woong】存储可用的数据
   private static final String CLEAN = "CLEAN";
+  // 【Woong】预备存储的数据，后面必跟 CLEAN 或者 REMOVE
   private static final String DIRTY = "DIRTY";
+  // 【Woong】已删除的数据
   private static final String REMOVE = "REMOVE";
+  // 【Woong】读取数据的记录
   private static final String READ = "READ";
 
     /*
@@ -210,7 +214,7 @@ public final class DiskLruCache implements Closeable {
   private long size = 0;
   private Writer journalWriter;
   
-  // 【Woong】缓存对象的 HashMap
+  // 【Woong】缓存对象的 LinkedHashMap，LinkedHashMap 源码实现了 Lru 算法，每次 get 后节点自动移位到 last，即最后删除
   private final LinkedHashMap<String, Entry> lruEntries =
       new LinkedHashMap<String, Entry>(0, 0.75f, true);
   
@@ -222,9 +226,11 @@ public final class DiskLruCache implements Closeable {
    * a sequence number each time an edit is committed. A snapshot is stale if
    * its sequence number is not equal to its entry's sequence number.
    */
+  // 【Woong】自增的序列号，每次 Entry 更新时赋值
   private long nextSequenceNumber = 0;
 
   /** This cache uses a single background thread to evict entries. */
+  // 【Woong】操作记录超过 2000 条时 rebuild journal 文件
   final ThreadPoolExecutor executorService =
       new ThreadPoolExecutor(0, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
   private final Callable<Void> cleanupCallable = new Callable<Void>() {
@@ -243,6 +249,7 @@ public final class DiskLruCache implements Closeable {
     }
   };
 
+  // 【Woong】构造函数，无需多言。注意是 private，只能通过 open 方法使用。
   private DiskLruCache(File directory, int appVersion, int valueCount, long maxSize) {
     this.directory = directory;
     this.appVersion = appVersion;
@@ -262,6 +269,7 @@ public final class DiskLruCache implements Closeable {
    * @param maxSize the maximum number of bytes this cache should use to store
    * @throws IOException if reading or writing the cache directory fails
    */
+  // 【Woong】open，缓存前准备
   public static DiskLruCache open(File directory, int appVersion, int valueCount, long maxSize)
       throws IOException {
     if (maxSize <= 0) {
@@ -310,6 +318,7 @@ public final class DiskLruCache implements Closeable {
     return cache;
   }
 
+  // 【Woong】读取每一条 journal 记录，更新 redundantOpCount 操作数
   private void readJournal() throws IOException {
     StrictLineReader reader = new StrictLineReader(new FileInputStream(journalFile), Util.US_ASCII);
     try {
@@ -342,6 +351,7 @@ public final class DiskLruCache implements Closeable {
     }
   }
 
+  // 【Woong】解析 journal 每条数据
   private void readJournalLine(String line) throws IOException {
     int firstSpace = line.indexOf(' ');
     if (firstSpace == -1) {
@@ -385,6 +395,7 @@ public final class DiskLruCache implements Closeable {
    * Computes the initial size and collects garbage as a part of opening the
    * cache. Dirty entries are assumed to be inconsistent and will be deleted.
    */
+  // 【Woong】累计所有缓存文件的大小
   private void processJournal() throws IOException {
     deleteIfExists(journalFileTmp);
     for (Iterator<Entry> i = lruEntries.values().iterator(); i.hasNext(); ) {
@@ -408,6 +419,7 @@ public final class DiskLruCache implements Closeable {
    * Creates a new journal that omits redundant information. This replaces the
    * current journal if it exists.
    */
+  // 【Woong】rebuild journal，清空多余操作记录
   private synchronized void rebuildJournal() throws IOException {
     if (journalWriter != null) {
       journalWriter.close();
@@ -467,6 +479,7 @@ public final class DiskLruCache implements Closeable {
    * exist is not currently readable. If a value is returned, it is moved to
    * the head of the LRU queue.
    */
+  // 【Woong】get 方法获取缓存
   public synchronized Snapshot get(String key) throws IOException {
     checkNotClosed();
     validateKey(key);
@@ -512,6 +525,7 @@ public final class DiskLruCache implements Closeable {
    * Returns an editor for the entry named {@code key}, or null if another
    * edit is in progress.
    */
+  // 【Woong】edit 方法获取编辑缓存的 Editor 类
   public Editor edit(String key) throws IOException {
     return edit(key, ANY_SEQUENCE_NUMBER);
   }
@@ -571,6 +585,7 @@ public final class DiskLruCache implements Closeable {
     return size;
   }
 
+  // 【Woong】完成一次编辑，处理一些后事 <_<
   private synchronized void completeEdit(Editor editor, boolean success) throws IOException {
     Entry entry = editor.entry;
     if (entry.currentEditor != editor) {
@@ -630,6 +645,7 @@ public final class DiskLruCache implements Closeable {
    * We only rebuild the journal when it will halve the size of the journal
    * and eliminate at least 2000 ops.
    */
+  // 【Woong】2000 条记录的判断规则就在这里
   private boolean journalRebuildRequired() {
     final int redundantOpCompactThreshold = 2000;
     return redundantOpCount >= redundantOpCompactThreshold //
@@ -642,6 +658,7 @@ public final class DiskLruCache implements Closeable {
    *
    * @return true if an entry was removed.
    */
+  // 【Woong】根据 key 删除记录
   public synchronized boolean remove(String key) throws IOException {
     checkNotClosed();
     validateKey(key);
@@ -682,6 +699,7 @@ public final class DiskLruCache implements Closeable {
   }
 
   /** Force buffered operations to the filesystem. */
+  // 【Woong】flush 后写记录
   public synchronized void flush() throws IOException {
     checkNotClosed();
     trimToSize();
@@ -689,6 +707,7 @@ public final class DiskLruCache implements Closeable {
   }
 
   /** Closes this cache. Stored values will remain on the filesystem. */
+  // 【Woong】对应 open，关闭缓存的操作
   public synchronized void close() throws IOException {
     if (journalWriter == null) {
       return; // Already closed.
@@ -715,6 +734,7 @@ public final class DiskLruCache implements Closeable {
    * all files in the cache directory including files that weren't created by
    * the cache.
    */
+  // 【Woong】删除所有缓存
   public void delete() throws IOException {
     close();
     Util.deleteContents(directory);
@@ -732,10 +752,15 @@ public final class DiskLruCache implements Closeable {
   }
 
   /** A snapshot of the values for an entry. */
+  // 【Woong】读取缓存的快照
   public final class Snapshot implements Closeable {
+    // 【Woong】缓存 key
     private final String key;
+    // 【Woong】缓存序列号，对比 Entry 中的序列号，查看快照是否为最新
     private final long sequenceNumber;
+    // 【Woong】数据流
     private final InputStream[] ins;
+    // 【Woong】数据长度，为什么是数组？还记得 valueCount 吗？
     private final long[] lengths;
 
     private Snapshot(String key, long sequenceNumber, InputStream[] ins, long[] lengths) {
@@ -784,10 +809,15 @@ public final class DiskLruCache implements Closeable {
   };
 
   /** Edits the values for an entry. */
+  // 【Woong】缓存编辑类
   public final class Editor {
+    // 【Woong】待编辑的数据
     private final Entry entry;
+    // 【Woong】写状态，数据是否已经写入磁盘
     private final boolean[] written;
+    // 【Woong】是否出错
     private boolean hasErrors;
+    // 【Woong】是否已经 Commited 完成写流程
     private boolean committed;
 
     private Editor(Entry entry) {
@@ -799,6 +829,7 @@ public final class DiskLruCache implements Closeable {
      * Returns an unbuffered input stream to read the last committed value,
      * or null if no value has been committed.
      */
+    // 【Woong】Entry 数据输入流
     public InputStream newInputStream(int index) throws IOException {
       synchronized (DiskLruCache.this) {
         if (entry.currentEditor != this) {
@@ -831,6 +862,7 @@ public final class DiskLruCache implements Closeable {
      * {@link #commit} is called. The returned output stream does not throw
      * IOExceptions.
      */
+    // 【Woong】Entry 数据输出流
     public OutputStream newOutputStream(int index) throws IOException {
       synchronized (DiskLruCache.this) {
         if (entry.currentEditor != this) {
@@ -872,6 +904,7 @@ public final class DiskLruCache implements Closeable {
      * Commits this edit so it is visible to readers.  This releases the
      * edit lock so another edit may be started on the same key.
      */
+    //。【Woong】提交，完成写流程
     public void commit() throws IOException {
       if (hasErrors) {
         completeEdit(this, false);
@@ -886,6 +919,7 @@ public final class DiskLruCache implements Closeable {
      * Aborts this edit. This releases the edit lock so another edit may be
      * started on the same key.
      */
+    // 【Woong】终止写过程
     public void abort() throws IOException {
       completeEdit(this, false);
     }
@@ -938,6 +972,7 @@ public final class DiskLruCache implements Closeable {
     }
   }
 
+  // 【Woong】缓存的数据类
   private final class Entry {
     private final String key;
 
@@ -945,12 +980,15 @@ public final class DiskLruCache implements Closeable {
     private final long[] lengths;
 
     /** True if this entry has ever been published. */
+    // 【Woong】该数据当前是否可读，即是否已经被创建至磁盘
     private boolean readable;
 
     /** The ongoing edit or null if this entry is not being edited. */
+    // 【Woong】数据类对应的 Editor，只有在被编辑过程中才不为空
     private Editor currentEditor;
 
     /** The sequence number of the most recently committed edit to this entry. */
+    // 【Woong】每当 Entry 发生变化时更新，用来判断快照是否过期
     private long sequenceNumber;
 
     private Entry(String key) {
@@ -996,4 +1034,6 @@ public final class DiskLruCache implements Closeable {
 }
 
 ```
+
+
 
