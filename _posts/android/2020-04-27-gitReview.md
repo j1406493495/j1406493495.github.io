@@ -22,6 +22,10 @@ tags:
 
 如图所示，在`remote` 下添加高亮处代码即可完成配置，邮箱按需配置。
 
+```
+push = +refs/heads/*:refs/for/*%r=hrs@hzmct.com,r=admin@hzmct.com
+```
+
 配置完成后，`push`代码时只需执行`git push origin 分支名`即可，例如`git push origin dev`。
 
 如果嫌这个还长的话，在`~/.bashrc`中配置`alias gpo='git push origin'`，保存并`source ~/.bashrc`生效。
