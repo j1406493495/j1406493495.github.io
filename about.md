@@ -28,5 +28,5 @@ redirect_from:
 
 * [发邮件](mailto:jin_wang_hui@163.com) : jin_wang_hui@163.com
 * 微信公众号：WoongTalk
-* 微信号：jwh147
+* 微信号：Woong_666
 
