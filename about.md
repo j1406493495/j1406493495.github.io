@@ -13,7 +13,7 @@ redirect_from:
 # 个人信息
 
  - Woong
- - 微信号：jwh147
+ - 微信号：Woong_666
  - 微信公众号：WoongTalk
  - 技术博客：[http://woong.cn](http://woong.cn)
  - Github：[https://github.com/j1406493495](https://github.com/j1406493495)
